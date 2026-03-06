@@ -18,10 +18,10 @@ export class AppController {
   ) {}
 
   @MessagePattern('generate_token')
-  async generateToken(@Payload() email: string) {
+  async generateToken(@Payload() data: any) {
 
     const user = await firstValueFrom(
-      this.userClient.send('find_by_email', email),
+      this.userClient.send('find_by_email', data.email),
     );
 
     if (!user) {
